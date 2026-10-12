@@ -1,0 +1,56 @@
+Task 12 — Cloud Virtual Machine Specifications
+
+
+1. Project Overview
+
+Task: Create and Configure a Cloud Virtual Machine  
+Cloud Provider: Amazon Web Services (AWS)  
+Service: Amazon EC2  
+Instance Name: `veda-task12-cloud-vm`  
+Region: Asia Pacific (Mumbai) — `ap-south-1`
+
+
+2. Virtual Machine Configuration
+
+|       Parameter    |                Configuration                 |
+|--------------------|----------------------------------------------|
+| Operating System   | Ubuntu Server 26.04 LTS                      |
+| Architecture       | 64-bit x86                                   |
+| Instance Type      | `t3.micro`                                   |
+| Virtual CPUs       | 2 vCPUs                                      |
+| Memory             | 1 GiB                                        |
+| Root Storage       | 8 GiB EBS                                    |
+| Volume Type        | General Purpose SSD (`gp3`)                  |
+| IOPS               | 3,000                                        |
+| Storage Encryption | Enabled                                      |
+| SSH Port           | TCP 22                                       |
+| SSH Access         | Restricted to the administrator's IP address |
+
+
+3. Deployment Verification
+
+The EC2 instance was launched successfully and reached the Running state. AWS reported that all three instance status checks passed.
+
+SSH connectivity was verified from Windows PowerShell using the existing EC2 key pair. The login banner confirmed Ubuntu Server 26.04 LTS.
+
+System commands used to verify the VM included:
+
+- `hostname` — checks the system hostname.
+- `df -h` — checks filesystem capacity and usage.
+- `lsb_release -a` — identifies the Linux distribution and release.
+- `lscpu` — displays CPU information.
+- `free -h` — displays memory information.
+
+4. Security Configuration
+
+A dedicated security group named `veda-task12-vm-sg` was configured. Inbound SSH access is restricted to the administrator's IPv4 address using a `/32` CIDR range. The EBS root volume is encrypted using the default AWS-managed EBS KMS key.
+
+5. Outcome
+
+The virtual machine was provisioned successfully. The operating system, compute resources, storage, networking, SSH access, and instance health were verified.
+
+6. Cost and Cleanup Note
+
+The instance type was marked Free tier eligible in the AWS console at configuration time. Actual charges depend on account eligibility, usage, and associated resources.
+
+After all required evidence is captured and the project is submitted, unused cloud resources should be stopped or terminated as appropriate to prevent further charges.
